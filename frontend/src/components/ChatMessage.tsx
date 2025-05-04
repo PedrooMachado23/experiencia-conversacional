@@ -2,11 +2,16 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
+type Option = {
+  label: string;
+  value: string;
+}
+
 type ChatMessageProps = {
   message: string;
   isBot: boolean;
-  options?: string[];
-  onOptionClick?: (option: string) => void;
+  options?: Option[];
+  onOptionClick?: (label: string, value: string) => void; //handleSendMessage do Chatbot.tsx
   isTyping?: boolean;
 };
 
@@ -24,7 +29,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
     )}>
       {isBot && (
         <div className="h-8 w-8 rounded-full bg-primary flex-shrink-0 mr-2 overflow-hidden flex items-center justify-center">
-          <span className="text-white text-xs font-bold">BOT</span>
+          <img src="../public/furia_icon.jpeg" alt="" className='rounded-full'/>
         </div>
       )}
 
@@ -48,7 +53,11 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
               "rounded-lg py-2 px-4 inline-block",
               isBot ? "bg-gray-200 text-gray-800" : "bg-primary text-white"
             )}>
-              {message}
+              {message.includes("<br>") ? (
+                <div dangerouslySetInnerHTML={{ __html: message }} />
+              ) : (
+                <pre className="whitespace-pre-wrap tracking-tight">{message}</pre>
+              )}
             </div>
 
             {isBot && options.length > 0 && (
@@ -56,10 +65,10 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
                 {options.map((option, index) => (
                   <button
                     key={index}
-                    onClick={() => onOptionClick && onOptionClick(option)}
-                    className="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm px-3 py-1 rounded-full transition-colors"
+                    onClick={() => onOptionClick && onOptionClick(option.label, option.value)}
+                    className="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm px-3 py-1 rounded-full transition-colors whitespace-pre-wrap tracking-tight"
                   >
-                    {option}
+                    {option.label}
                   </button>
                 ))}
               </div>

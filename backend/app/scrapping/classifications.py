@@ -13,7 +13,7 @@ def get_classification_hist():
 
     soup = BeautifulSoup(response.text, 'html.parser')
     #lista para poder usar os campos como keys no dict
-    tournament_fields = 'data, classificação, tier, tipo, imagem1, imagem2, torneio, placar, oponente, premio'.split(', ')
+    tournament_fields = 'data, classificacao, tier, tipo, imagem1, imagem2, torneio, placar, oponente, premio'.split(', ')
     tr_tags = soup.find('tbody').find_all('tr')
     for tr in tr_tags:
         tournament_data = {}
@@ -34,7 +34,7 @@ def get_classification_hist():
             if field == 'data':
                 year, month, day = value.split('-')
                 value = [f'{day}-{month}', year]
-            elif field ==  'classificação':
+            elif field ==  'classificacao':
                 for string in 'st, nd, rd, th'.split(', '):
                     if string in value:
                         value = value.replace(string, '°')

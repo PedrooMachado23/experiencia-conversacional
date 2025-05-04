@@ -45,7 +45,7 @@ const CreditsSection = () => {
                 <span className="text-primary">FURIA</span> Esports
               </h2>
               <p className="text-gray-400 max-w-md">
-                Elevating Brazilian esports to the world stage since 2017.
+                Elevando o e-sport Brasileiro a nível mundial desde 2017.
               </p>
             </div>
             
@@ -54,25 +54,19 @@ const CreditsSection = () => {
                 <h3 className="font-bold text-lg">Connect</h3>
                 <ul className="space-y-2">
                   <li>
-                    <a href="#" className="text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
+                    <a href="https://github.com/PedrooMachado23" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
                       <Github size={18} />
                       <span>GitHub</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
-                      <Twitter size={18} />
-                      <span>Twitter</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
+                    <a href="https://www.instagram.com/pedroohmachado?igsh=MTdpeTk3ZnIwYWFiYQ==" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
                       <Instagram size={18} />
                       <span>Instagram</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
+                    <a href="https://www.linkedin.com/in/pedro-henrique-machado-martins-968855305/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
                       <Linkedin size={18} />
                       <span>LinkedIn</span>
                     </a>
@@ -87,16 +81,13 @@ const CreditsSection = () => {
               © {new Date().getFullYear()} Pedro Henrique Machado Martins.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors">
+              <a href="https://github.com/PedrooMachado23" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary transition-colors">
                 <Github size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors">
+              <a href="https://www.instagram.com/pedroohmachado?igsh=MTdpeTk3ZnIwYWFiYQ==" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors">
+              <a href="https://www.linkedin.com/in/pedro-henrique-machado-martins-968855305/"  target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary transition-colors">
                 <Linkedin size={20} />
               </a>
             </div>

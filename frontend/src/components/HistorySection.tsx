@@ -48,30 +48,24 @@ const HistorySection = () => {
     >
       <div className="container mx-auto px-6">
         <div className={`space-y-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h2 className="text-4xl font-bold text-center mb-12">Our <span className="text-primary">History</span></h2>
+          <h2 className="text-4xl font-bold text-center mb-12">Sobre os <span className="text-primary">Dados Coletados</span></h2>
           
-          <div className="w-full overflow-x-auto rounded-lg shadow">
-            <table className="w-full bg-white">
-              <thead className="bg-gray-800 text-white">
-                <tr>
-                  <th className="py-3 px-6 text-left">Year</th>
-                  <th className="py-3 px-6 text-left">Event</th>
-                  <th className="py-3 px-6 text-left">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                {historyData.map((item, index) => (
-                  <tr 
-                    key={index} 
-                    className={`border-b ${isVisible ? `animate-fade-in-up animate-delay-${Math.min(index * 100, 300)}` : 'opacity-0'} ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
-                  >
-                    <td className="py-4 px-6">{item.year}</td>
-                    <td className="py-4 px-6 font-medium">{item.event}</td>
-                    <td className="py-4 px-6">{item.description}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="w-full overflow-x-auto rounded-lg shadow p-5 bg-white text-lg">
+            <div className="space-y-3">
+              <p>
+                Nosso chatbot foi desenvolvido para oferecer informações atualizadas e confiáveis sobre a FURIA — e pra isso, buscamos dados direto das melhores fontes do cenário competitivo:
+              </p>
+              <ul className="list-disc ml-5">
+                <li>HLTV.org: Referência mundial em CS2, é de lá que puxamos as partidas ao vivo e os confrontos que ainda estão por vir.</li>
+                <li>Liquipedia.net: Nossa enciclopédia gamer favorita! De lá vem os dados sobre histórico de partidas, classificações em torneios e o lineup atual da FURIA.</li>
+              </ul>
+              <p>
+                Essas informações são processadas em tempo real por nosso backend em FastAPI, que se conecta diretamente a essas fontes por meio de web scraping.
+              </p>
+              <p>
+                Tudo isso pra garantir que você tenha acesso à caçada mais atualizada possível. 🐾
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -13,20 +13,26 @@ def get_match_hist():
     tr_tags = soup.find('tbody').find_all('tr')[1:]
 
     #necessario colocar todas as colunas para que não haja incoerencias ao usar 'for field, td_tag in zip(...)'
-    match_fields = 'data, tier, tipo, imagem1, imagem2, torneio, participante, placar, oponente, vod(s)'.split(', ')
+    match_fields = 'data, tier, tipo, imagem1, imagem2, torneio, participante, placar, oponente, links'.split(', ')
     row_count = 0
     for tr in tr_tags:
-        match_data = {}
+        match_data = {
+            #data
+            #torneio
+            #placar
+            #oponent
+            #links
+        }
         td_tags = tr.find_all('td')
         
 
         for field, td in zip(match_fields, td_tags):
             
             #excluindo campos indesejados
-            if td in 'tier, tipo, imagem1, imagem2, participante'.split(', '):
+            if field in 'tier, tipo, imagem1, imagem2, participante'.split(', '):
                 continue
 
-            if field == 'vod(s)':
+            if field == 'links':
                 value = []
                 
                 try:
@@ -65,7 +71,7 @@ def get_match_hist():
 
                         value = [f'{day}-{month_translation[month]}', year]
                     else:
-                        continue
+                        value = [f'Data não definida', '-']
             
             match_data[field] = value
 
@@ -75,7 +81,94 @@ def get_match_hist():
     return matches_data
 
 def get_upcoming_matches():
-    pass
+    matches = []
+
+    url = f'https://www.hltv.org/team/8297/furia#tab-matchesBox'
+
+    scraper = cloudscraper.create_scraper()
+    response = scraper.get(url)
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+    header = soup.find(string="Upcoming matches for FURIA")
+
+    if header:
+        parent_div = header.parent.parent
+        table_tag = parent_div.find('table')
+
+        thead_tags = table_tag.find_all('thead')
+        tr_tags = table_tag.find('tbody').find_all('tr')
+        match_fields = 'data, oponente, botaoPartida'.split(', ')
+        for thead in thead_tags[1:]: #primeiro é o header da tabela, enquanto os demais são os nomes do torneio
+            tournament_name = ''.join(thead.stripped_strings)
+
+        
+            for tr in tr_tags:
+                td_tags = tr.find_all('td')
+                
+                match_data = {'torneio': tournament_name}
+                for field, td in zip(match_fields, td_tags):
+                    if field == 'botaoPartida':
+                        continue
+                    
+                    value = ' '.join(td.stripped_strings).replace('\xa0', '') #caracter presente no field 'placar'
+
+                    if value == '': #quando tem mais de um torneio na mesma tabela, a última linha tem um texto vazio
+                        continue
+
+                    if field == 'data':
+                        value = value.replace('/',' - ')
+
+                    match_data[field] = value
+                matches.append(match_data)
+    else:
+        matches.append({
+            'torneio': '-',
+            'data': 'Nenhuma partida encontrada',
+            'oponente': '-'
+        })
+    return matches      
+    
+
+def get_live_matches():
+    matches = []
+
+    url = f'https://www.hltv.org/matches'
+
+    scraper = cloudscraper.create_scraper()
+    response = scraper.get(url)
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+    live_matches_container_tag = soup.find('div', class_='liveMatches')
+
+    if live_matches_container_tag:
+        match_container_tags = live_matches_container_tag.find_all('div', class_='match-wrapper')
+        
+        for match_container in match_container_tags:
+            match_inner_container_tag = match_container.find('div').find('div')
+            link_tag = match_inner_container_tag.find('a')
+
+            link = 'https://www.hltv.org' + link_tag['href'] #pegando o link dessa forma, o protocolo nao é retirado da tag
+            tournament_name = ":'".join(link_tag.stripped_strings)
+            
+            team_containers = match_inner_container_tag.find_all('div', class_='match-teamname')
+            teams = []
+            for container in team_containers:
+                teams.append(container.string)
+
+            match_data = {
+                'links': [link], #para manter consistência com a tipagem de match no front
+                'torneio': tournament_name,
+                'oponente': ' x '.join(teams)
+            }
+            matches.append(match_data)
+    else:
+        match_data = {
+            'link': '-',
+            'torneio': 'Nenhum jogo ao vivo no momento!',
+            'oponente': '-'
+        }
+    return matches
 
 if __name__ == '__main__':
-    print(get_match_hist())
+    data = get_live_matches()
+    print(data)

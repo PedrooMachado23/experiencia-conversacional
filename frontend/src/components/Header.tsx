@@ -44,19 +44,19 @@ const Header = () => {
           onClick={() => scrollTo('about')} 
           className="text-white hover:text-primary transition-colors"
         >
-          About
+          Sobre
         </button>
         <button 
           onClick={() => scrollTo('history')} 
           className="text-white hover:text-primary transition-colors"
         >
-          History
+          Dados
         </button>
         <button 
           onClick={() => scrollTo('credits')} 
           className="text-white hover:text-primary transition-colors"
         >
-          Credits
+          Créditos
         </button>
       </nav>
 

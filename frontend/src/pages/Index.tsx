@@ -10,7 +10,7 @@ const Index = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handleOpenChat = () => {
-    setIsChatOpen(true);
+    setIsChatOpen(!isChatOpen);
   };
 
   return (
@@ -22,16 +22,16 @@ const Index = () => {
         <div className="container mx-auto px-6 text-center">
           <div className="animate-fade-in-up">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-              Welcome to <span className="text-primary">FURIA</span>
+              Bem vindo ao <span className="text-primary">FURIA FanChat</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto">
-              Brazil's premier esports organization competing at the highest level worldwide
+              Nosso chatbot especial para que você, nosso fã dedicado e amado, fique sabendo de tudo sobre a história da FURIA com CS!
             </p>
             <button 
               onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-primary hover:bg-primary/90 text-white py-3 px-8 rounded-lg font-medium transition-colors"
             >
-              Learn More
+              Saiba Mais
             </button>
           </div>
         </div>
@@ -41,7 +41,7 @@ const Index = () => {
       <HistorySection />
       <CreditsSection />
       
-      <Chatbot />
+      <Chatbot isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
     </div>
   );
 };

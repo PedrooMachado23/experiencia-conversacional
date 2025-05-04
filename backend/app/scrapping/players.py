@@ -6,8 +6,12 @@ from bs4 import BeautifulSoup
     #fazer o get_player_stats
 
 def get_players():
-    players = {
-        # index: [player_fields]
+    players = []
+
+    flag_translation = {
+        'Brazil': 'Brasil',
+        'Kazakhstan': 'Cazaquistão',
+        'Latvia': 'Letônia'
     }
 
     url = 'https://liquipedia.net/counterstrike/FURIA'
@@ -19,7 +23,6 @@ def get_players():
 
     tr_tags = soup.find_all('tr', class_='Player')[:6] #pega apenas o roster ativo (e ha mencoes repetidas de players)
 
-    players_key = 0
     for tr in tr_tags:
         try:
             #estrutura compartilhada entre flag_tag/id_tag
@@ -43,12 +46,15 @@ def get_players():
             except:
                 pass
 
-            players[players_key] = [flag_name, player_id, player_name, position]
+            players.append({
+                'nationality': flag_translation[flag_name],
+                'nickname': player_id,
+                'name': player_name,
+                'role': position
+            })
 
         except Exception as e:
             print('erro ao buscar tag: ' + e)
-        
-        players_key += 1
     return players
 
 def get_player_stats():
