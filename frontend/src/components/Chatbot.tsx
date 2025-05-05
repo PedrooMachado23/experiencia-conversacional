@@ -250,6 +250,7 @@ const Chatbot = ({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }: ChatbotProps)
       })
 
       sendBotMessage(liveMatchesString, [
+        {label: 'Saber mais sobre Partidas!', value: 'match'},
         returnMenu
       ])
     }
@@ -264,7 +265,11 @@ const Chatbot = ({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }: ChatbotProps)
         value: 'matchHistList'
       }))
 
-      sendBotMessage('Claro! Escolha um ano ver todas as partidas que tivemos!', [...years_options, returnMenu])
+      sendBotMessage('Claro! Escolha um ano ver todas as partidas que tivemos!', [
+        ...years_options,
+        {label: 'Saber mais sobre Partidas!', value: 'match'},
+        returnMenu
+      ])
     }
 
     if (value === 'matchHistList'){
@@ -287,7 +292,7 @@ const Chatbot = ({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }: ChatbotProps)
       })
       
       sendBotMessage(matchHistString, [
-        {label: 'Ver outros partidas', value: 'matchHist'},
+        {label: 'Ver outras partidas', value: 'matchHist'},
         returnMenu
       ])
     }
@@ -309,6 +314,7 @@ const Chatbot = ({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }: ChatbotProps)
       })
       
       sendBotMessage(botMessageString,[
+        {label: 'Saber mais sobre Partidas!', value: 'match'},
         {label: 'Pra cima! 🔥', value: 'mainContext'}
       ])
     }
@@ -329,7 +335,8 @@ const Chatbot = ({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }: ChatbotProps)
       })
 
       sendBotMessage(players_string, [
-        {label: 'GGWP! 😎', value: 'mainContext'}
+        {label: 'GGWP! 😎', value: 'mainContext'},
+        {label: 'Saber mais sobre o time!', value: 'team'}
       ]
       )
     }
@@ -344,7 +351,10 @@ const Chatbot = ({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }: ChatbotProps)
         value: 'classHistList'
       }))
 
-      sendBotMessage('Claro! Escolha um ano ver todos os torneios que participamos!', [...years_options, returnMenu])
+      sendBotMessage('Claro! Escolha um ano ver todos os torneios que participamos!', [
+        ...years_options, 
+        {label: 'Saber mais sobre o time!', value: 'team'},
+        returnMenu])
     }
 
     if (value === 'classHistList'){
