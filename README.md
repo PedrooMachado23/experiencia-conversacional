@@ -1,4 +1,4 @@
-# 🦍 FURIA Web Chatbot
+# 🦍 FURIA FanChat
 
 Um chatbot interativo que entrega, direto no navegador, informações em tempo real sobre o time de CS2 FURIA — os fãs vão ficar por dentro de tudo: lineup, histórico de partidas e torneios, partidas ao vivo e mais!. Tudo com scraping automatizado e uma interface web moderna.
 
@@ -41,6 +41,9 @@ Desenvolver um chatbot acessível via navegador que funcione como uma central de
 - **requests** – requisições HTTP
 
 ---
+## ✏️ Digrama de mensagens do Chatbot
+- [Diagrama](https://github.com/PedrooMachado23/experiencia-conversacional/blob/main/assets/chatbot_messages_flow.png)
+---
 
 ## 🔌 Endpoints da API
 
@@ -66,6 +69,7 @@ Desenvolver um chatbot acessível via navegador que funcione como uma central de
 ```bash
 cd backend
 pip install -r requirements.txt
+cd app
 uvicorn main:app --reload
 ```
 ### 2. Frontend
