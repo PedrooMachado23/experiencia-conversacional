@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import ChatMessage from './ChatMessage';
 import axios from 'axios';
 
+import chatIcon from '../assets/furia_icon.jpeg'
+
 type Option = {
   label: string;
   value: string;
@@ -189,7 +191,7 @@ const Chatbot = ({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }: ChatbotProps)
         `🐾 Fundada em 2017, a FURIA é uma das maiores organizações de e-sports do Brasil — e um dos times de CS mais temidos do mundo.
 \nCom estilo agressivo, identidade forte e uma legião de fãs apaixonados, a FURIA representa o Brasil nos maiores torneios internacionais.
 \nVem com a gente nessa caçada! 🎯`,
-        [{label: 'FURIA ❣️', value: 'mainContext'}]
+        [{label: 'FURIA 🖤', value: 'mainContext'}]
       )
     }
  
@@ -393,7 +395,7 @@ Escolha uma opção pra começar 👇`,
           <div className="bg-primary p-4 text-white flex items-center justify-between">
             <div className="flex items-center">
               <div className="h-8 w-8 rounded-full bg-white mr-3 flex items-center justify-center text-primary font-bold text-sm">
-                <img src="../public/furia_icon.jpeg" alt="" className='rounded-full'/>
+                <img src={chatIcon} alt="" className='rounded-full'/>
               </div>
               <span className="font-medium">FURIA Support</span>
             </div>

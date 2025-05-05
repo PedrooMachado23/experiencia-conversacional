@@ -2,6 +2,8 @@
 import { useRef, useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 
+import mainImg from '../assets/furia_imagem_principal.jpeg'
+
 type AboutSectionProps = {
   onOpenChat: () => void;
 };
@@ -74,7 +76,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ onOpenChat }) => {
           <div className={`bg-gray-800 h-32 md:h-60 rounded-lg overflow-hidden shadow-lg ${isVisible ? 'animate-fade-in-up animate-delay-200' : 'opacity-0'}`}>
             {/* This would be an image in a real implementation */}
             <div className="w-full h-full bg-gradient-to-br from-primary to-black flex items-center justify-center">
-              <img src="../public/furia_imagem_principal.jpeg" alt="future_is_black" className='className="w-full h-full object-cover"'/>
+              <img src={mainImg} alt="future_is_black" className='className="w-full h-full object-cover"'/>
               {/* <span className="text-white text-3xl md:text-5xl font-bold">FURIA</span> */}
             </div>
           </div>

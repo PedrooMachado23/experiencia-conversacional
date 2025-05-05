@@ -2,6 +2,8 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
+import chatIcon from '../assets/furia_icon.jpeg'
+
 type Option = {
   label: string;
   value: string;
@@ -29,7 +31,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
     )}>
       {isBot && (
         <div className="h-8 w-8 rounded-full bg-primary flex-shrink-0 mr-2 overflow-hidden flex items-center justify-center">
-          <img src="../public/furia_icon.jpeg" alt="" className='rounded-full'/>
+          <img src={chatIcon} alt="" className='rounded-full'/>
         </div>
       )}
 
